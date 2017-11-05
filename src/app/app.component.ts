@@ -6,9 +6,11 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // [nzDisable]="true" for function not available
   menus = [
     {
       label: '用户管理',
+      isOpen: false,
       icon: 'anticon-user',
       menu: [
         {
@@ -33,6 +35,7 @@ export class AppComponent {
     },
     {
       label: '订单管理',
+      isOpen: false,
       icon: 'anticon-file',
       menu: [
         {
@@ -165,6 +168,7 @@ export class AppComponent {
     },
     {
       label: '包材管理',
+      isOpen: false,
       icon: 'anticon-switcher',
       menu: [
         {
@@ -225,6 +229,7 @@ export class AppComponent {
     },
     {
       label: '商品管理',
+      isOpen: false,
       icon: 'anticon-hdd',
       menu: [
         {
@@ -261,6 +266,7 @@ export class AppComponent {
     },
     {
       label: '单号管理',
+      isOpen: false,
       icon: 'anticon-credit-card',
       menu: [
         {
@@ -297,6 +303,7 @@ export class AppComponent {
     },
     {
       label: '收件管理',
+      isOpen: false,
       icon: 'anticon-inbox',
       menu: [{
         label: '收件人列表',
@@ -307,6 +314,7 @@ export class AppComponent {
     },
     {
       label: '打印管理',
+      isOpen: false,
       icon: 'anticon-printer',
       menu: [
         {
@@ -331,6 +339,7 @@ export class AppComponent {
     },
     {
       label: '运费管理',
+      isOpen: false,
       icon: 'anticon-car',
       menu: [
         {
@@ -361,6 +370,7 @@ export class AppComponent {
     },
     {
       label: '历史管理',
+      isOpen: false,
       icon: 'anticon-copy',
       menu: [
         {
@@ -379,6 +389,7 @@ export class AppComponent {
     },
     {
       label: '派工管理',
+      isOpen: false,
       icon: 'anticon-user-add',
       menu: [
         {
@@ -409,6 +420,7 @@ export class AppComponent {
     },
     {
       label: '系统管理',
+      isOpen: false,
       icon: 'anticon-setting',
       menu: [
         {
@@ -438,4 +450,13 @@ export class AppComponent {
       ]
     }
   ];
+
+  openOnly(menu): any {
+    menu.isOpen = true;
+    this.menus.forEach(item => {
+      if (item.label !== menu.label) {
+        item.isOpen = false;
+      }
+    });
+  }
 }

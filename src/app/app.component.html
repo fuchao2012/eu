@@ -1,12 +1,14 @@
-<nz-layout style="height: 100%">
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzBreakpoint]="'lg'">
+<nz-layout style="height: 100%;">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzBreakpoint]="'lg'" style="overflow-y: scroll;">
     <div class="logo">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
-      <li nz-submenu *ngFor="let menu of menus">
+      <li nz-submenu *ngFor="let menu of menus" [(nzOpen)]="menu.isOpen" (nzOpenChange)="openOnly(menu)">
         <span title><i class="anticon {{menu.icon}}"></i><span class="nav-text">{{menu.label}}</span></span>
         <ul>
-          <li nz-menu-item *ngFor="let item of menu.menu">{{item.label}}</li>
+          <li nz-menu-item *ngFor="let item of menu.menu">
+            <a [routerLink]="item.link" routerLinkActive="active">{{item.label}}</a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -17,13 +19,7 @@
          (click)="isCollapsed=!isCollapsed"></i>
     </nz-header>
     <nz-content style="margin:0 16px;">
-      <nz-breadcrumb style="margin:12px 0;">
-        <nz-breadcrumb-item>User</nz-breadcrumb-item>
-        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-      </nz-breadcrumb>
-      <div style="padding:24px; background: #fff; min-height: 360px;">
-        Bill is a cat.
-      </div>
+      <router-outlet></router-outlet>
     </nz-content>
     <nz-footer style="text-align: center;">EU Internatinal ©2017 Implement By Fuchao</nz-footer>
   </nz-layout>
