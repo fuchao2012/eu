@@ -1,27 +1,20 @@
-<nz-layout>
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+<nz-layout style="height: 100%">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzBreakpoint]="'lg'">
     <div class="logo">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
-      <li nz-submenu>
-        <span title><i class="anticon {{user.icon}}"></i><span class="nav-text">{{user.label}}</span></span>
+      <li nz-submenu *ngFor="let menu of menus">
+        <span title><i class="anticon {{menu.icon}}"></i><span class="nav-text">{{menu.label}}</span></span>
         <ul>
-          <li nz-menu-item *ngFor="let item of user.menu">{{item.label}}</li>
+          <li nz-menu-item *ngFor="let item of menu.menu">{{item.label}}</li>
         </ul>
       </li>
-      <li nz-submenu>
-        <span title><i class="anticon anticon-team"></i><span class="nav-text">Team</span></span>
-        <ul>
-          <li nz-menu-item>Team 1</li>
-          <li nz-menu-item>Team 2</li>
-        </ul>
-      </li>
-      <li nz-menu-item><span><i class="anticon anticon-file"></i><span class="nav-text">File</span></span></li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header style="background: #fff; padding:0;">
-      <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed" (click)="isCollapsed=!isCollapsed"></i>
+      <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed"
+         (click)="isCollapsed=!isCollapsed"></i>
     </nz-header>
     <nz-content style="margin:0 16px;">
       <nz-breadcrumb style="margin:12px 0;">
@@ -32,6 +25,6 @@
         Bill is a cat.
       </div>
     </nz-content>
-    <nz-footer style="text-align: center;">Ant Design ©2017 Implement By Angular</nz-footer>
+    <nz-footer style="text-align: center;">EU Internatinal ©2017 Implement By Fuchao</nz-footer>
   </nz-layout>
 </nz-layout>

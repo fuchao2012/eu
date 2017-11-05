@@ -1,6 +1,13 @@
 :host ::ng-deep .logo {
+  height: 45px;
+  background: url("../assets/logo.png") no-repeat;
+  background-size: contain;
+  margin: 16px 16px 16px 35px;
+}
+:host ::ng-deep .ant-layout-sider-collapsed .logo{
   height: 32px;
-  background: #333;
+  background: url("../assets/logo-collapsed.png") no-repeat;
+  background-size: contain;
   border-radius: 6px;
   margin: 16px;
 }
