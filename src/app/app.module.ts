@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgZorroAntdModule, NZ_LOCALE, enUS} from 'ng-zorro-antd';
 import {AppComponent} from './app.component';
 import {RouterModule, Routes} from '@angular/router';
@@ -39,6 +39,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     NgZorroAntdModule.forRoot(),

@@ -4,6 +4,8 @@ import {ListComponent} from './list/list.component';
 import {RouterModule, Routes} from '@angular/router';
 import {SendEmailComponent} from './send-email/send-email.component';
 import {WaitPickComponent} from './wait-pick/wait-pick.component';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -21,6 +23,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgZorroAntdModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [ListComponent, SendEmailComponent, WaitPickComponent]
