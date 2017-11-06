@@ -1,11 +1,11 @@
 <nz-layout style="height: 100%;">
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzBreakpoint]="'lg'" style="overflow-y: scroll;">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" [nzBreakpoint]="'lg'">
     <div class="logo">
     </div>
     <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
       <li nz-submenu *ngFor="let menu of menus" [(nzOpen)]="menu.isOpen" (nzOpenChange)="openOnly(menu)">
         <span title><i class="anticon {{menu.icon}}"></i><span class="nav-text">{{menu.label}}</span></span>
-        <ul>
+        <ul style="max-height: 260px; overflow-y: scroll;">
           <li nz-menu-item *ngFor="let item of menu.menu">
             <a [routerLink]="item.link" routerLinkActive="active">{{item.label}}</a>
           </li>
