@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  isCollapsed = false;
   // [nzDisable]="true" for function not available
   menus = [
     {
