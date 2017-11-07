@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -111,7 +111,7 @@ export class ListComponent implements OnInit {
         name: `Fuchao ${i}`,
         balance: Math.floor(Math.random() * 1000),
         accum: Math.floor(Math.random() * 100),
-        isFetchOnlie: !(Math.random() > 0.5),
+        isFetchOnline: !(Math.random() > 0.5),
         stokingMode: Math.ceil(Math.random() * 2),
         packagingPlace: Math.ceil(Math.random() * 3),
         fetchRoad: Math.ceil(Math.random() * 5),

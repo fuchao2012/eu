@@ -1,3 +1,90 @@
-<p>
-  send-email works!
-</p>
+<nz-breadcrumb style="margin:12px 0;">
+  <nz-breadcrumb-item>用户管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>已发送邮件列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<div style="padding:8px; background: #fff; margin-bottom: 16px">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="email" [nzPlaceHolder]="'邮箱地址'">
+        </nz-input>
+      </div>
+    </div>
+    <button nz-button [nzType]="'primary'">搜索</button>
+  </form>
+</div>
+<div style="padding:24px; background: #fff; min-height: 360px;">
+  <nz-table #nzTable
+            [nzDataSource]="_dataSet"
+            [nzPageSize]="10"
+            [(nzPageIndex)]="_current"
+            (nzDataChange)="_displayDataChange($event)">
+    <thead nz-thead>
+    <tr>
+      <th nz-th [nzExpand]="true"></th>
+      <th nz-th><span>编号</span></th>
+      <th nz-th><span>发送类型</span></th>
+      <th nz-th><span>发送账户</span></th>
+      <th nz-th><span>发件人</span></th>
+      <th nz-th><span>收件人</span></th>
+      <th nz-th><span>标题</span></th>
+      <th nz-th><span>附件</span></th>
+      <th nz-th><span>发送时间</span></th>
+      <th nz-th><span>发送状态</span></th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <ng-template ngFor let-data [ngForOf]="nzTable?.data" let-i="index">
+      <tr nz-tbody-tr>
+        <td nz-td [nzExpand]="true">
+          <nz-row-expand-icon [(nzExpand)]="data.expand"></nz-row-expand-icon>
+        </td>
+        <td nz-td>
+          {{i + 1 + 10 * (_current-1)}}
+        </td>
+        <td nz-td>
+          <nz-tag *ngIf="data.sendStyle === 1">单发</nz-tag>
+          <nz-tag [nzColor]="'red'" *ngIf="data.sendStyle === 2">群发</nz-tag>
+        </td>
+        <td nz-td>
+          <nz-tag *ngIf="data.sendClass === 1">系统</nz-tag>
+          <nz-tag [nzColor]="'green'" *ngIf="data.sendClass === 2">管理员</nz-tag>
+        </td>
+        <td nz-td>
+          {{data.sender}}
+        </td>
+        <td nz-td>
+          {{data.recipient}}
+        </td>
+        <td nz-td>
+          {{data.subject}}
+        </td>
+        <td nz-td>
+          <nz-tag [nzColor]="'red'" *ngIf="!data.attachment">有附件</nz-tag>
+          <nz-tag *ngIf="data.attachment">无附件</nz-tag>
+          <span *ngIf="!data.attachment">
+          <a href="#">下载</a>
+        </span>
+        </td>
+        <td nz-td>
+          {{data.time | date: 'yyyy-mm-dd HH:mm'}}
+        </td>
+        <td nz-td>
+          <nz-tag [nzColor]="'red'" *ngIf="!data.status">发送失败</nz-tag>
+          <nz-tag [nzColor]="'green'" *ngIf="data.status">发送成功</nz-tag>
+          <span *ngIf="!data.status">
+          <a href="#">重发</a>
+          </span>
+        </td>
+      </tr>
+      <tr nz-tbody-tr *ngIf="data.expand">
+        <td nz-td>
+        </td>
+        <td nz-td colspan="9">
+          {{data.content}}
+        </td>
+      </tr>
+    </ng-template>
+    </tbody>
+  </nz-table>
+</div>
