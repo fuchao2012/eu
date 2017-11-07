@@ -1,3 +1,226 @@
-<p>
-  bill-list works!
-</p>
+<nz-breadcrumb style="margin:12px 0;">
+  <nz-breadcrumb-item>订单管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>订单列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<div style="padding:8px; background: #fff; margin-bottom: 16px">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="orderIdOrCarryId" [nzPlaceHolder]="'订单号/运单号'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="senderIdOrRecipientId" [nzPlaceHolder]="'发件人/收件人'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="batchId" [nzPlaceHolder]="'批次号'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="ladingId" [nzPlaceHolder]="'提单号'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-datepicker formControlName="startDate" [nzPlaceHolder]="'开始时间'"></nz-datepicker>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-datepicker formControlName="endDate" [nzPlaceHolder]="'结束时间'"></nz-datepicker>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="packagingPlace">
+          <nz-option
+            *ngFor="let option of packagingPlaceOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="expressClass">
+          <nz-option
+            *ngFor="let option of expressClassOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="stokingMode">
+          <nz-option
+            *ngFor="let option of stokingModeOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="dispatchingStatus">
+          <nz-option
+            *ngFor="let option of dispatchingStatusOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="fetchRoad">
+          <nz-option
+            *ngFor="let option of fetchRoadOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 500px;"
+                   [nzMode]="'multiple'"
+                   [nzPlaceHolder]="'全部订单状态'"
+                   [nzNotFoundContent]="'请输入正确订单关键词'"
+                   formControlName="orderStatus">
+          <nz-option
+            *ngFor="let option of orderStatusOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <button nz-button [nzType]="'primary'">搜索</button>
+  </form>
+</div>
+<div style="padding:24px; background: #fff; min-height: 360px;">
+  <div style="margin-bottom: 16px;">
+    <button nz-button [disabled]="_disabledButton" [nzType]="'primary'" [nzLoading]="_operating"
+            (click)="_operateData()">批量打印运单
+    </button>
+    <button nz-button [disabled]="_disabledButton" [nzType]="'primary'" [nzLoading]="_operating"
+            (click)="_operateData()">批量打印派工单
+    </button>
+    <button nz-button [disabled]="_disabledButton" [nzType]="'primary'" [nzLoading]="_operating"
+            (click)="_operateData()">批量标记问题件
+    </button>
+    <button nz-button [disabled]="_disabledButton" [nzType]="'primary'" [nzLoading]="_operating"
+            (click)="_operateData()">批量创建卓志订单
+    </button>
+    <button nz-button [nzType]="'primary'" [nzLoading]="_operating" (click)="_operateData()">导入数据</button>
+    <a href="#" style="margin-left: 8px;">下载导入模板</a>
+    <span style="margin-left: 8px;">( 共 {{_dataSet?.length}} 条)</span>
+    <span style="margin-left: 8px;" *ngIf="_checkedNumber">(选中 {{_checkedNumber}} 条)</span>
+
+  </div>
+  <nz-table #nzTable
+            [nzDataSource]="_dataSet"
+            [nzPageSize]="10"
+            (nzDataChange)="_displayDataChange($event)"
+            (nzPageIndexChange)="_refreshStatus()"
+            (nzPageSizeChange)="_refreshStatus()">
+    <thead nz-thead>
+    <tr>
+      <th nz-th [nzCheckbox]="true">
+        <label nz-checkbox [(ngModel)]="_allChecked" [nzIndeterminate]="_indeterminate"
+               (ngModelChange)="_checkAll($event)">
+        </label>
+      </th>
+      <th nz-th><span>用户名</span></th>
+      <th nz-th><span>余额</span></th>
+      <th nz-th><span>积分</span></th>
+      <th nz-th><span>取件在线</span></th>
+      <th nz-th><span>备货模式</span></th>
+      <th nz-th><span>打包仓库</span></th>
+      <th nz-th><span>取货线路</span></th>
+      <th nz-th><span>注册时间</span></th>
+      <th nz-th><span>最后登录时间</span></th>
+      <th nz-th><span>最后登录IP</span></th>
+      <th nz-th><span>操作</span></th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of nzTable?.data">
+      <td nz-td [nzCheckbox]="true">
+        <label nz-checkbox [(ngModel)]="data.checked" (ngModelChange)="_refreshStatus($event)">
+        </label>
+      </td>
+      <td nz-td>
+        <a>{{data.name}}</a>
+      </td>
+      <td nz-td>
+        <span>
+          {{data.balance | currency: 'EUR':'symbol': '.2-2'}}
+          <span nz-table-divider></span>
+          <a href="#">账单</a>
+          <span nz-table-divider></span>
+          <a href="#">充值</a>
+        </span>
+      </td>
+      <td nz-td>
+        <span>
+          {{data.accum}}
+          <span nz-table-divider></span>
+          <a href="#">积分</a>
+        </span>
+      </td>
+      <td nz-td>
+        <nz-tag [nzColor]="'red'" *ngIf="!data.isFetchOnline">取件不在线</nz-tag>
+        <nz-tag [nzColor]="'green'" *ngIf="data.isFetchOnline">取件在线</nz-tag>
+      </td>
+      <td nz-td>
+        <nz-tag [nzColor]="'orange'" *ngIf="data.stokingMode===1">OTO备货</nz-tag>
+        <nz-tag [nzColor]="'cyan'" *ngIf="data.stokingMode===2">用户自备</nz-tag>
+      </td>
+      <td nz-td>
+        <nz-tag *ngIf="data.packagingPlace===1">荷兰综合仓</nz-tag>
+        <nz-tag *ngIf="data.packagingPlace===2">比利时综合仓</nz-tag>
+        <nz-tag *ngIf="data.packagingPlace===3">德国综合仓</nz-tag>
+      </td>
+      <td nz-td>
+        <nz-tag *ngIf="data.fetchRoad===1">全部路线</nz-tag>
+        <nz-tag *ngIf="data.fetchRoad===2">未分配路线</nz-tag>
+        <nz-tag *ngIf="data.fetchRoad===3">路线1</nz-tag>
+        <nz-tag *ngIf="data.fetchRoad===4">路线2</nz-tag>
+        <nz-tag *ngIf="data.fetchRoad===5">路线3</nz-tag>
+      </td>
+      <td nz-td>
+        {{data.registerTime | date: 'yyyy-mm-dd HH:mm'}}
+      </td>
+      <td nz-td>
+        {{data.lastLoginTime | date: 'yyyy-mm-dd HH:mm'}}
+      </td>
+      <td nz-td>
+        {{data.lastLoginIp}}
+      </td>
+      <td nz-td>
+        <span>
+          <a href="#">修改密码</a>
+          <span nz-table-divider></span>
+          <a href="#">冻结</a>
+          <span nz-table-divider></span>
+          <a href="#">{{!isInBlackList ? '拉黑' : '召回'}}</a>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

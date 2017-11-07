@@ -1,5 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+// 业务组件
 import {BillListComponent} from './bill-list/bill-list.component';
 import {BillNotPayComponent} from './bill-not-pay/bill-not-pay.component';
 import {BillHadPayComponent} from './bill-had-pay/bill-had-pay.component';
@@ -21,7 +25,6 @@ import {BillExceptionComponent} from './bill-exception/bill-exception.component'
 import {BillExportComponent} from './bill-export/bill-export.component';
 import {BillExportBaoguanComponent} from './bill-export-baoguan/bill-export-baoguan.component';
 import {BillExportAgentsComponent} from './bill-export-agents/bill-export-agents.component';
-import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {
@@ -114,6 +117,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgZorroAntdModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [

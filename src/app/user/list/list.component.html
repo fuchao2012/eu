@@ -118,6 +118,7 @@
     </button>
     <button nz-button [nzType]="'primary'" [nzLoading]="_operating" (click)="_operateData()">导入数据</button>
     <a href="#" style="margin-left: 8px;">下载导入模板</a>
+    <span style="margin-left: 8px;">( 共 {{_dataSet?.length}} 条)</span>
     <span style="margin-left: 8px;" *ngIf="_checkedNumber">(选中 {{_checkedNumber}} 条)</span>
   </div>
   <nz-table #nzTable [nzDataSource]="_dataSet" [nzPageSize]="10" (nzDataChange)="_displayDataChange($event)"
