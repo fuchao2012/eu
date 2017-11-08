@@ -10,6 +10,8 @@ import {PackagingIsClosedComponent} from './packaging-is-closed/packaging-is-clo
 import {PackagingReturnClosedComponent} from './packaging-return-closed/packaging-return-closed.component';
 import {PackagingExportComponent} from './packaging-export/packaging-export.component';
 import {RouterModule, Routes} from '@angular/router';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -53,6 +55,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgZorroAntdModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [

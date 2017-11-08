@@ -1,3 +1,114 @@
-<p>
-  list works!
-</p>
+<nz-breadcrumb style="margin:12px 0;">
+  <nz-breadcrumb-item>包材订单管理</nz-breadcrumb-item>
+  <nz-breadcrumb-item>订单列表</nz-breadcrumb-item>
+</nz-breadcrumb>
+<div style="padding:8px; background: #fff; margin-bottom: 16px">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm" (ngSubmit)="_submitForm()">
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="userName" [nzPlaceHolder]="'姓名'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="password" [nzPlaceHolder]="'账号'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="userId" [nzPlaceHolder]="'用户ID'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="orderId" [nzPlaceHolder]="'订单编号'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-input formControlName="recipient" [nzPlaceHolder]="'收件人'">
+        </nz-input>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="payStyle">
+          <nz-option
+            *ngFor="let option of payStyleOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div nz-form-item>
+      <div nz-form-control>
+        <nz-select style="width: 120px"
+                   formControlName="packagingStatus">
+          <nz-option
+            *ngFor="let option of packagingStatusOptions"
+            [nzLabel]="option.label"
+            [nzValue]="option.value"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <button nz-button [nzType]="'primary'">搜索</button>
+  </form>
+</div>
+<div style="padding:24px; background: #fff; min-height: 360px;">
+  <div style="margin-bottom: 16px;">
+    <span style="margin-left: 8px;">( 共 {{_dataSet?.length}} 条)</span>
+  </div>
+  <nz-table #nzTable
+            [nzDataSource]="_dataSet"
+            [nzPageSize]="10"
+            [(nzPageIndex)]="_current"
+            (nzDataChange)="_displayDataChange($event)"
+            (nzPageIndexChange)="_refreshStatus()"
+            (nzPageSizeChange)="_refreshStatus()">
+    <thead nz-thead>
+    <tr>
+      <th nz-th><span>编号</span></th>
+      <th nz-th><span>用户名</span></th>
+      <th nz-th><span>用户ID</span></th>
+      <th nz-th><span>订单编号</span></th>
+      <th nz-th><span>商品名称</span></th>
+      <th nz-th><span>商品金额</span></th>
+      <th nz-th><span>收件人信息</span></th>
+      <th nz-th><span>支付方式</span></th>
+      <th nz-th><span>下单时间</span></th>
+      <th nz-th><span>操作</span></th>
+    </tr>
+    </thead>
+    <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let data of nzTable?.data;index as i">
+      <td nz-td>{{i + 1 + 10 * (_current-1)}}</td>
+      <td nz-td>{{data.name}}</td>
+      <td nz-td>{{data.userId}}</td>
+      <td nz-td><a>{{data.orderId}}</a></td>
+      <td nz-td>{{data.packageName}}</td>
+      <td nz-td>{{data.packagePrice | currency: 'EUR':'symbol': '.2-2'}}</td>
+      <td nz-td>{{data.recipient}}</td>
+      <td nz-td>
+        <nz-tag *ngIf="data.payStyle===1">现金</nz-tag>
+        <nz-tag *ngIf="data.payStyle===2">刷卡</nz-tag>
+        <nz-tag *ngIf="data.payStyle===3">转账</nz-tag>
+        <nz-tag *ngIf="data.payStyle===4">余额</nz-tag>
+        <nz-tag *ngIf="data.payStyle > 4">其他</nz-tag>
+      </td>
+      <td nz-td>
+        {{data.orderTime | date: 'yyyy-MM-dd HH:mm'}}
+      </td>
+      <td nz-td>
+        <span>
+          <a href="#">查看详情</a>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

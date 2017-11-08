@@ -26,12 +26,12 @@ export class AppComponent {
           hasSub: false,
           isSub: true
         },
-        {
-          label: '待取件用户',
-          link: '/user-wait-pick',
-          hasSub: false,
-          isSub: true
-        }
+        // {
+        //   label: '待取件用户',
+        //   link: '/user-wait-pick',
+        //   hasSub: false,
+        //   isSub: true
+        // }
       ]
     },
     {
@@ -45,108 +45,108 @@ export class AppComponent {
           hasSub: true,
           isSub: false
         },
-        {
-          label: '未支付订单',
-          link: '/bill-not-pay',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '已支付订单',
-          link: '/bill-had-pay',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '等待打包订单',
-          link: '/bill-wait-package',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '暂时缺货订单',
-          link: '/bill-is-lack',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '延迟发货订单',
-          link: '/bill-had-delay',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '等待发货订单',
-          link: '/bill-wait-send',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '打托完成订单',
-          link: '/bill-had-package',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '发往机场订单',
-          link: '/bill-send-airport',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '发往国内订单',
-          link: '/bill-send-china',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '清关订单',
-          link: '/bill-clear',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '海关查验订单',
-          link: '/bill-is-check',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '国内派送订单',
-          link: '/bill-in-china',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '破损返回订单',
-          link: '/bill-is-broken',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '已收货订单',
-          link: '/bill-is-receive',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '取消和关闭订单',
-          link: '/bill-is-cancled',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '确认收货关闭订单',
-          link: '/bill-is-closed',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '异常件订单',
-          link: '/bill-exception',
-          hasSub: false,
-          isSub: true
-        },
+        // {
+        //   label: '未支付订单',
+        //   link: '/bill-not-pay',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '已支付订单',
+        //   link: '/bill-had-pay',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '等待打包订单',
+        //   link: '/bill-wait-package',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '暂时缺货订单',
+        //   link: '/bill-is-lack',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '延迟发货订单',
+        //   link: '/bill-had-delay',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '等待发货订单',
+        //   link: '/bill-wait-send',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '打托完成订单',
+        //   link: '/bill-had-package',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '发往机场订单',
+        //   link: '/bill-send-airport',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '发往国内订单',
+        //   link: '/bill-send-china',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '清关订单',
+        //   link: '/bill-clear',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '海关查验订单',
+        //   link: '/bill-is-check',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '国内派送订单',
+        //   link: '/bill-in-china',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '破损返回订单',
+        //   link: '/bill-is-broken',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '已收货订单',
+        //   link: '/bill-is-receive',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '取消和关闭订单',
+        //   link: '/bill-is-cancled',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '确认收货关闭订单',
+        //   link: '/bill-is-closed',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '异常件订单',
+        //   link: '/bill-exception',
+        //   hasSub: false,
+        //   isSub: true
+        // },
         {
           label: '导出订单',
           link: '/bill-export',
@@ -178,54 +178,54 @@ export class AppComponent {
           hasSub: true,
           isSub: false
         },
-        {
-          label: '未发货订单',
-          link: '/packaging-not-send',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '已发货订单',
-          link: '/packaging-had-send',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '已收货订单',
-          link: '/packaging-had-receive',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '用户取消订单',
-          link: '/packaging-had-cancel',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '确认收货关闭订单',
-          link: '/packaging-receive-closed',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '正常关闭订单',
-          link: '/packaging-is-closed',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '退款关闭订单',
-          link: '/packaging-return-closed',
-          hasSub: false,
-          isSub: true
-        },
-        {
-          label: '导出包材订单',
-          link: '/packaging-export',
-          hasSub: false,
-          isSub: false
-        }
+        // {
+        //   label: '未发货订单',
+        //   link: '/packaging-not-send',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '已发货订单',
+        //   link: '/packaging-had-send',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '已收货订单',
+        //   link: '/packaging-had-receive',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '用户取消订单',
+        //   link: '/packaging-had-cancel',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '确认收货关闭订单',
+        //   link: '/packaging-receive-closed',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '正常关闭订单',
+        //   link: '/packaging-is-closed',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '退款关闭订单',
+        //   link: '/packaging-return-closed',
+        //   hasSub: false,
+        //   isSub: true
+        // },
+        // {
+        //   label: '导出包材订单',
+        //   link: '/packaging-export',
+        //   hasSub: false,
+        //   isSub: false
+        // }
       ]
     },
     {
