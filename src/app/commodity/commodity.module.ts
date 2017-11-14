@@ -6,6 +6,8 @@ import {CommodityBrandsComponent} from './commodity-brands/commodity-brands.comp
 import {CommodityListComponent} from './commodity-list/commodity-list.component';
 import {CommodityPackageListComponent} from './commodity-package-list/commodity-package-list.component';
 import {RouterModule, Routes} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
 
 const routes: Routes = [
   {
@@ -33,6 +35,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    NgZorroAntdModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [

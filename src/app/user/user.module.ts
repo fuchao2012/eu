@@ -24,8 +24,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     NgZorroAntdModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [ListComponent, SendEmailComponent, WaitPickComponent]
